@@ -25,8 +25,6 @@ import statsmodels.api as sm
 import statsmodels.formula.api as smf
 import scipy.stats as stats
 
-#Script by Jared Anderson
-
 def transform_rating(rating):
     '''Input: Column of Data with NPS Field (on a scale of 1 to 5...)
     Output: Column with either Promoter/Detractor/Passive label, or the corresponding weights, based on datatype'''
@@ -245,8 +243,8 @@ for key in ['excel','word','pp','all']:
     coefficients['Odds Ratio']=np.exp(coefficients['Coef.'])
     coefficients['O.R.LB']=np.exp(coefficients['[0.025'])
     coefficients['O.R.UB']=np.exp(coefficients['0.975]'])
-    coefficient['Probability'] = coefficients['Odds Ratio'].round(1)*0.5 #- 0.5
-    coefficient['Probability'] = coefficients['Probability'].mask(coefficients['Probability']>=1,0.99)
+    coefficients['Probability'] = coefficients['Odds Ratio'].round(1)*0.5 #- 0.5
+    coefficients['Probability'] = coefficients['Probability'].mask(coefficients['Probability']>=1,0.99)
     coefficients.join(flight_durations)
     coefficients.to_csv('StatSigFlights'+month+'.csv',mode='a')
     
